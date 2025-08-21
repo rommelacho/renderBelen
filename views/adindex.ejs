@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belén Escobar</title>
+
+    <!-- Bootstrap 4 local -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <!-- Tipografía elegante -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-dark">Belén Escobar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menu"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">:D</span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adnina">Niña</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adgala">Gala</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/ad15">15 años</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adautoc">Autóctonos</a>
+            </li>
+            <% if (usuario) { %>
+            <li class="nav-item">
+              <form action="/logout" method="POST" class="form-inline">
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-outline-danger ml-2"
+                >
+                  Logout
+                </button>
+              </form>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Bienvenidos a Belén Escobar</h1>
+        <p>Moda con identidad, elegancia y tradición boliviana.</p>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS para Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

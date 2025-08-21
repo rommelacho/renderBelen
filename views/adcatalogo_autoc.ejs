@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vestidos Autóctonos - Belén Escobar</title>
+
+    <!-- Bootstrap 4 local -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <!-- Tipografía elegante -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-dark">Belén Escobar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menu"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adnina">Niña</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adgala">Gala</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/ad15">15 años</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/adautoc">Autóctonos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/agenda">AGENDAR CITA</a>
+            </li>
+            <% if (usuario) { %>
+            <li class="nav-item">
+              <form action="/logout" method="POST" class="form-inline">
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-outline-danger ml-2"
+                >
+                  Logout
+                </button>
+              </form>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Título y enlace -->
+    <h1>Vestidos Autóctonos 🇧🇴</h1>
+    <div class="text-center mb-3">
+      <button
+        type="button"
+        class="btn btn-success"
+        data-toggle="modal"
+        data-target="#modalNuevoVestido"
+      >
+        ➕ Agregar nuevo vestido
+      </button>
+    </div>
+
+    <!-- Galería dinámica -->
+    <div class="galeria">
+      <% vestidos.forEach(v => { %>
+      <div
+        class="modal fade"
+        id="modalImagen<%= v.id %>"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalImagenLabel<%= v.id %>"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-lg modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content bg-transparent border-0">
+            <div class="modal-body text-center">
+              <img
+                src="/imagenes/<%= v.imagen %>"
+                alt="<%= v.nombre %>"
+                class="img-fluid rounded"
+                style="max-height: 80vh"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="modalEditar<%= v.id %>"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel<%= v.id %>"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <form
+            action="/catalogo/editarautoc/<%= v.id %>"
+            method="POST"
+            enctype="multipart/form-data"
+            class="modal-content"
+          >
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel<%= v.id %>">
+                Editar: <%= v.nombre %>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input
+                  type="text"
+                  name="nombre"
+                  class="form-control"
+                  value="<%= v.nombre %>"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="descripcion" class="form-control" required>
+                  <%= v.descripcion %></textarea
+                >
+              </div>
+
+              <div class="form-group">
+                <label>Precio (Bs)</label>
+                <input
+                  type="number"
+                  name="precio"
+                  class="form-control"
+                  value="<%= v.precio %>"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Imagen actual</label><br />
+                <img
+                  src="/imagenes/<%= v.imagen %>"
+                  alt="<%= v.imagen %>"
+                  class="img-fluid rounded mb-2"
+                  style="max-height: 200px"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Cambiar imagen</label>
+                <input
+                  type="file"
+                  name="imagen"
+                  accept="image/*"
+                  class="form-control-file"
+                />
+                <small class="form-text text-muted"
+                  >Si no seleccionás una nueva imagen, se mantendrá la
+                  actual.</small
+                >
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Guardar cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <img
+          src="/imagenes/<%= v.imagen %>"
+          alt="<%= v.nombre %>"
+          data-toggle="modal"
+          data-target="#modalImagen<%= v.id %>"
+        />
+        <h3><%= v.nombre %></h3>
+        <p><%= v.descripcion %></p>
+        <p><strong>Precio:</strong> Bs <%= v.precio %></p>
+
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm mt-2"
+          data-toggle="modal"
+          data-target="#modalEditar<%= v.id %>"
+        >
+          ✏️ Editar
+        </button>
+
+        <form
+          action="/catalogo/eliminarautoc/<%= v.id %>"
+          method="POST"
+          onsubmit="return confirm('¿Seguro que querés eliminar <%= v.nombre %>?');"
+          class="mt-2"
+        >
+          <button type="submit" class="btn btn-outline-danger btn-sm">
+            🗑️ Eliminar
+          </button>
+        </form>
+      </div>
+      <% }) %>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalNuevoVestido"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modalNuevoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <form
+          action="/catalogo/nuevoautoc"
+          method="POST"
+          enctype="multipart/form-data"
+          class="modal-content"
+        >
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalNuevoLabel">
+              Agregar nuevo vestido
+            </h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" name="nombre" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+              <label>Descripción</label>
+              <textarea
+                name="descripcion"
+                class="form-control"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Precio (Bs)</label>
+              <input
+                type="number"
+                name="precio"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Imagen</label>
+              <input
+                type="file"
+                name="imagen"
+                accept="image/*"
+                class="form-control-file"
+                required
+              />
+              <small class="form-text text-muted"
+                >Subí una imagen en formato JPG, PNG o WebP.</small
+              >
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-success">
+              Guardar vestido
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Bootstrap JS para Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

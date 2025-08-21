@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión - Belén Escobar</title>
+
+    <!-- Bootstrap 4 local -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <!-- Tipografía elegante -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        margin-top: 80px; /* Espacio desde el top */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-dark" href="/">Belén Escobar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menu"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/nina">Niña</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/gala">Gala</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/15">15 años</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/autoc">Autóctonos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/agenda">AGENDAR CITA</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Formulario de login -->
+    <div class="login-container">
+      <h2>Iniciar sesión</h2>
+      <% if (mensaje) { %>
+      <div
+        class="alert alert-success alert-dismissible fade show mt-3"
+        role="alert"
+      >
+        <%= mensaje %>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Cerrar"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% } %>
+      <form method="POST" action="/login">
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          placeholder="Correo"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder="Contraseña"
+          required
+        />
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        <!-- Botón para registrarse -->
+        <div class="text-center mt-3">
+          <a href="/registro" class="btn btn-outline-secondary btn-block"
+            >Registrarse</a
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS para Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Modal de error -->
+    <!-- Modal de error estilizado -->
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0 shadow-lg rounded">
+          <div
+            class="modal-header bg-gradient-danger text-white d-flex align-items-center"
+          >
+            <i class="fas fa-exclamation-triangle fa-lg mr-2"></i>
+            <h5 class="modal-title mb-0" id="errorModalLabel">
+              Error de inicio de sesión
+            </h5>
+            <button
+              type="button"
+              class="close text-white ml-auto"
+              data-dismiss="modal"
+              aria-label="Cerrar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark bg-light">
+            <p class="mb-0"><%= error %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+            <% if (typeof error !== 'undefined' && error) { %>
+        $(document).ready(function () {
+          $('#errorModal').modal('show');
+        });
+      <% } %>
+    </script>
+  </body>
+</html>

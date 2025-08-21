@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belén Escobar</title>
+
+    <!-- Bootstrap 4 local -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-dark" href="/">Belén Escobar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#menu"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">:D</span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/nina">Niña</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/gala">Gala</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/15">15 años</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/autoc">Autóctonos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/catalogo/agenda">Agendar cita</a>
+            </li>
+
+            <% if (usuario) { %>
+            <li class="nav-item">
+              <form action="/logout" method="POST" class="form-inline">
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-outline-danger ml-2"
+                >
+                  Salir
+                </button>
+              </form>
+            </li>
+            <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="texto">
+          <h2>Bienvenidos a Belén Escobar</h2>
+          <h4>Moda con identidad, elegancia y tradición Boliviana. 🎉</h4>
+        </div>
+        <div class="imagen">
+          <img src="/imagenes/logo1.gif" alt="imagen" />
+        </div>
+      </div>
+    </section>
+    <section class="hero2">
+      <video autoplay muted loop playsinline class="video-fondo">
+        <source src="/imagenes/vbelen.mp4" type="video/mp4" />
+        Tu navegador no soporta el video.
+      </video>
+
+      <div class="contenido-hero carta-transparente">
+        <h4>
+          Mi visión es ser reconocida en Bolivia y el mundo como una diseñadora
+          que transforma la moda en un lenguaje cultural y artístico, llevando
+          con orgullo el nombre de mi tierra a pasarelas internacionales. Aspiro
+          a que mi marca sea un símbolo de identidad, creatividad y
+          sostenibilidad, capaz de inspirar a nuevas generaciones de
+          diseñadores.
+        </h4>
+      </div>
+    </section>
+    <section id="testimonios" class="bg-light p-5">
+      <div class="container">
+        <h2 class="text-center">Testimonios</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="testimonial">
+              <p>
+                "¡Los cursos de diseño de modas son fantásticos! Mi hija ha
+                aprendido mucho y se divierte creando sus propias prendas."
+              </p>
+              <p class="text-muted">- Ana Pérez</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial">
+              <p>
+                "El desfile de moda en vivo fue increíble. Definitivamente
+                asistiré a más eventos como este."
+              </p>
+              <p class="text-muted">- Luis Gómez</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial">
+              <p>
+                "La misión de Belén Escobar es crear moda de alta costura que
+                fusione la identidad cultural potosina con la innovación
+                contemporánea, exaltando la historia, los símbolos y la riqueza
+                artística de Bolivia."
+              </p>
+              <p class="text-muted">- María López</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-light text-center text-muted mt-5">
+      <div class="container py-4 border-top">
+        <p class="mb-2">Conéctate con nosotros en redes sociales:</p>
+        <div class="d-flex justify-content-center mb-4">
+          <a href="#" class="mx-2 text-dark"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="mx-2 text-dark"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="mx-2 text-dark"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <div class="row text-left">
+          <!-- Sección Moda y Estilo -->
+          <div class="col-md-3 mb-4">
+            <h6 class="text-uppercase font-weight-bold">Moda y Estilo</h6>
+            <p>
+              Diseños exclusivos que fusionan identidad cultural y elegancia
+              contemporánea.
+            </p>
+          </div>
+
+          <!-- Sección Colecciones -->
+          <div class="col-md-3 mb-4">
+            <h6 class="text-uppercase font-weight-bold">Colecciones</h6>
+            <ul class="list-unstyled">
+              <li><a href="/catalogo/nina" class="text-muted">Niña</a></li>
+              <li><a href="/catalogo/gala" class="text-muted">Gala</a></li>
+              <li><a href="/catalogo/15" class="text-muted">15 años</a></li>
+              <li>
+                <a href="/catalogo/autoc" class="text-muted">Autóctonos</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sección Enlaces Útiles -->
+          <div class="col-md-3 mb-4">
+            <h6 class="text-uppercase font-weight-bold">Enlaces Útiles</h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="/catalogo/agenda" class="text-muted">Agendar cita</a>
+              </li>
+              <li><a href="/login" class="text-muted">Login</a></li>
+              <li><a href="/soporte" class="text-muted">Soporte</a></li>
+            </ul>
+          </div>
+
+          <!-- Sección Contacto -->
+          <div class="col-md-3 mb-4">
+            <h6 class="text-uppercase font-weight-bold">Contacto</h6>
+            <p class="mb-1">Belén Escobar</p>
+            <p class="mb-1">Potosí, Bolivia</p>
+            <p class="mb-1">📧 belen.escobar.moda@gmail.com</p>
+            <p>📞 +591 40473353</p>
+          </div>
+        </div>
+
+        <div class="text-center py-3 border-top">
+          <small>© 2025 Belén Escobar · Moda con identidad boliviana</small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS para Bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
